@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -27,8 +28,8 @@ class UserController extends Controller
             'prenom' => 'required',
             'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required',
-            'password_confirm' => 'required',
+            'password' => 'required|min:6|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/',
+            'password_confirm' => 'required|min:6|same:password',
             'role' => 'required'
         ]);
 
@@ -77,5 +78,26 @@ class UserController extends Controller
         return redirect()->route('utilisateur.index')->with('success', 'Utilisateur modifier avec succès');
 
 
+    }
+
+    public function editPassword(){
+        return view('users.editPassword');
+    }
+
+    public function updatePassword(Request $request){
+        $data = $request->validate([
+            'oldPassword' => 'required',
+            'password' => 'required|min:6|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/',
+            'confirmPassword' => 'required|min:6|same:password',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->oldPassword, $user->password)) {
+            return redirect()->route('edit.password') ->with('danger', 'Ancien mot de passe incorrect.');
+        }
+
+        $user->password = Hash::make($data['password']);
+        $user->save();
     }
 }

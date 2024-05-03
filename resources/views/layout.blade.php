@@ -54,13 +54,25 @@
             <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="{{ asset('assets/img/profil.png') }}" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2 text-header">Username</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2 text-header">{{ Auth::user()->username }}</span>
                 </a><!-- End Profile Iamge Icon -->
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center" href="{{ route('utilisateur.editPassword') }}">
                             <i class="bi bi-box-arrow-right"></i>
-                            <span>Sign Out</span>
+                            <span>Modifier mon mot de passe</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>
+                                <form class="nav-item" action="{{ route('auth.logout')}}" method="post">
+                                    @method("delete")
+                                    @csrf
+                                    <button class="nav-link">Déconnexion</button>
+                                  </form>
+                            </span>
                         </a>
                     </li>
                 </ul><!-- End Profile Dropdown Items -->
