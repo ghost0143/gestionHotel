@@ -69,6 +69,9 @@
                                         <option value="admin">Administrateur</option>
                                         <option value="employe">Employe</option>
                                     </select>
+                                    @error('role')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
 

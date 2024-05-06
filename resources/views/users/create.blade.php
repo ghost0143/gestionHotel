@@ -76,10 +76,13 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Rôle</label>
                                     <select name="role" class="form-select" aria-label="Default select example">
-                                        <option selected>Choisir un rôle</option>
+                                        <option value="" selected>Choisir un rôle</option>
                                         <option value="admin">Administrateur</option>
                                         <option value="employe">Employe</option>
                                     </select>
+                                    @error('role')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
 

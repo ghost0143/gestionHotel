@@ -101,7 +101,7 @@
             </a>
         </li><!-- End Register Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="client.html">
+            <a class="nav-link collapsed" href="{{ route('client.index') }}">
                 <i class="bi bi-bank"></i>
                 <span>Client</span>
             </a>
