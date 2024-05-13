@@ -29,7 +29,7 @@ class UserController extends Controller
             'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/',
-            'password_confirm' => 'required|min:6|same:password',
+            'password_confirm' => 'required|same:password',
             'role' => 'required'
         ]);
 
@@ -74,7 +74,7 @@ class UserController extends Controller
             $user->role = $dataValidate['role'];
 
 
-        $user->update();
+        $user->save();
         return redirect()->route('utilisateur.index')->with('success', 'Utilisateur modifier avec succès');
 
 
@@ -94,7 +94,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         if (!Hash::check($request->oldPassword, $user->password)) {
-            return redirect()->route('edit.password') ->with('danger', 'Ancien mot de passe incorrect.');
+            return redirect()->route('utilisateur.editPassword') ->with('danger', 'Ancien mot de passe incorrect.');
         }
 
         $user->password = Hash::make($data['password']);

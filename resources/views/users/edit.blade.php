@@ -26,6 +26,15 @@
                     <div class="card new-user">
                         <div class="card-body">
                             <h5 class="card-title">Modifier des utilisateurs</h5>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
                             <!-- General Form Elements -->
                             <form method="post" action="{{ route('utilisateur.update', $user->id) }}">
@@ -66,8 +75,8 @@
                                     <label for="" class="form-label">Rôle</label>
                                     <select name="role" class="form-select" aria-label="Default select example">
                                         <option selected>Choisir un rôle</option>
-                                        <option value="admin">Administrateur</option>
-                                        <option value="employe">Employe</option>
+                                        <option value="Administrateur">Administrateur</option>
+                                        <option value="Employe">Employe</option>
                                     </select>
                                     @error('role')
                                     <div class="text-danger">{{ $message }}</div>

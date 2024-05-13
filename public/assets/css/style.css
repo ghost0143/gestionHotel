@@ -1274,7 +1274,7 @@ body, .header, .pagetitle{
   font-family: 'Courier New', Courier, monospace !important;
 }
 
-.form-control:focus-visible, .form-select:focus-visible {
+.form-control:focus-visible, .form-select:focus-visible, .select-btn:focus-visible {
   border-color: #0E2377;
   box-shadow: none; 
   outline: none !important;
@@ -1305,3 +1305,17 @@ body, .header, .pagetitle{
 .new-client, .new-user{
   margin: 50px 10%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

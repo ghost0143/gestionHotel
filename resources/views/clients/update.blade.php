@@ -23,6 +23,15 @@
               <div class="card new-user">
                 <div class="card-body">
                   <h5 class="card-title">Modifier des client</h5>
+                  @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                        </div>
+                  @endif
     
                   <!-- General Form Elements -->
                   <form method="post" action="{{ route('client.update', $client->id) }}">

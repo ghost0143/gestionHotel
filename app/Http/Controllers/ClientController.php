@@ -30,9 +30,19 @@ class ClientController extends Controller
             'carte' => 'required',
             'profession' => 'required',
         ]);
-
+    
+        $client = Client::where([
+            'nom' => $data['nom'],
+            'prenom' => $data['prenom'],
+            'email' => $data['email'],
+        ])->first();
+    
+        if ($client) {
+            return redirect()->route('client.createForm')->with('danger', 'Ce client existe déjà.');
+        }
+    
         $client = new Client();
-
+    
         $client->nom = $data['nom'];
         $client->prenom = $data['prenom'];
         $client->email = $data['email'];
@@ -44,13 +54,12 @@ class ClientController extends Controller
         $client->type = $data['type'];
         $client->profession = $data['profession'];
         $client->user_id = Auth::user()->id;
-
+    
         $client->save();
-
-        return redirect()->route('client.index')->with('success', 'Client créeer avec succès');
-
+    
+        return redirect()->route('client.index')->with('success', 'Client créé avec succès.');
     }
-
+    
     public function view($id){
         $client = Client::findOrFail($id);
         return view('clients.view', compact('client'));

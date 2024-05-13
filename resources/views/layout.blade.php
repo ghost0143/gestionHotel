@@ -12,6 +12,8 @@
     <!-- Favicons -->
     <link href="{{ asset('assets/img/logoacp.png') }}" rel="icon">
     <link href="{{ asset('assets/img/logoacp.png') }}" rel="apple-touch-icon">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
 
     <!-- Google Fonts -->
     <link href="{{ asset('https://fonts.gstatic.com') }}" rel="preconnect">
@@ -107,13 +109,13 @@
             </a>
         </li><!-- End Register Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="chambre.html">
+            <a class="nav-link collapsed" href="{{ route('chambre.index') }}">
                 <i class="bi bi-card-list"></i>
                 <span>Chambre</span>
             </a>
         </li><!-- End Register Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="reservation.html">
+            <a class="nav-link collapsed" href="{{ route('reservation.index') }}">
                 <i class="bi bi-terminal"></i>
                 <span>Réservation</span>
             </a>

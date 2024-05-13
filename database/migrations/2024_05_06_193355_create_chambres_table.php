@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('chambres', function (Blueprint $table) {
             $table->id();
+            $table->string('numero');
+            $table->string('type');
+            $table->string('systeme');
+            $table->string('vu');
+            $table->string('tarif');
+            $table->string('status')->default('Libre');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -53,8 +53,30 @@ Route::prefix('/client')->name('client.')->group(function (){
 
 
 //DEBUT ROUTES POUR LES CHAMBRES
-/*Route::prefix('/chambre')->name('chambre.')->group(function(){
-    Route::get('/')
-})*/
+Route::prefix('/chambre')->name('chambre.')->group(function(){
+    Route::get('/', [\App\Http\Controllers\ChambreController::class, 'index'])->name('index');
+    Route::get('/ajouter-une-chambre', [\App\Http\Controllers\ChambreController::class, 'formCreate'])->name('formCreate');
+    Route::post('/ajouter-une-chambre', [\App\Http\Controllers\ChambreController::class, 'create'])->name('create');
+    Route::get('/{id}/modifier', [\App\Http\Controllers\ChambreController::class, 'edit'])->name('edit');
+    Route::put('/{id}/modifier', [\App\Http\Controllers\ChambreController::class, 'update'])->name('update');
+    Route::delete('/{id}/supprimer', [\App\Http\Controllers\ChambreController::class, 'destroy'])->name('destroy');
+    Route::get('/recherche', [\App\Http\Controllers\ChambreController::class, 'search'])->name('search');
+});
 //FIN ROUTES POUR LES CHAMBRES
+
+//DEBUT ROUTES POUR LES RESERVATIONS
+Route::prefix('/reservation')->name('reservation.')->group(function(){
+    Route::get('/', [\App\Http\Controllers\ReservationController::class, 'index'])->name('index');
+    Route::get('/ajouter-une-reservation', [\App\Http\Controllers\ReservationController::class, 'formCreate'])->name('formCreate');
+    Route::post('/ajouter-une-reservation', [\App\Http\Controllers\ReservationController::class, 'create'])->name('create');
+    Route::get('/{id}/modifier', [\App\Http\Controllers\ReservationController::class, 'edit'])->name('edit');
+    Route::put('/{id}/modifier', [\App\Http\Controllers\ReservationController::class, 'update'])->name('update');
+    Route::get('/{id}/voir-le-client', [\App\Http\Controllers\ReservationController::class, 'view'])->name('view');
+    Route::put('/{id}/annuler', [\App\Http\Controllers\ReservationController::class, 'annuler'])->name('annuler');
+    Route::put('/{id}/confirmer', [\App\Http\Controllers\ReservationController::class, 'confirmer'])->name('confirmer');
+    Route::put('/{id}/restaurer', [\App\Http\Controllers\ReservationController::class, 'restaurer'])->name('restaurer');
+    Route::delete('/{id}/supprimer', [\App\Http\Controllers\ReservationController::class, 'destroy'])->name('destroy');
+    Route::get('/recherche', [\App\Http\Controllers\ReservationController::class, 'search'])->name('search');
+});
+//FIN ROUTES POUR LES RESERVATIONS
 

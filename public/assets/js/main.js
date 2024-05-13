@@ -336,5 +336,58 @@
 
 })();
 
+
+
+
+
+
+
+        document.getElementById("searchClient").addEventListener("input", function() {
+            var input, filter, select, options, option, i;
+            input = this.value.toUpperCase();
+            select = document.getElementById("client");
+            options = select.getElementsByTagName("option");
+            var found = false; // Variable pour suivre si au moins une option est trouvée
+            for (i = 0; i < options.length; i++) {
+                option = options[i];
+                if (option.textContent.toUpperCase().indexOf(input) > -1) {
+                    option.style.display = "";
+                    found = true; // Marquer comme trouvé si au moins une option est affichée
+                } else {
+                    option.style.display = "none";
+                }
+            }
+            // Afficher le texte "Aucun résultat trouvé" si aucune option n'est affichée
+            var noResultsMessage = document.getElementById("noResults");
+            if (!found) {
+                noResultsMessage.style.display = "block";
+            } else {
+                noResultsMessage.style.display = "none";
+            }
+        });
+
+        document.getElementById("searchChambre").addEventListener("input", function() {
+            var input, filter, select, options, option, i;
+            input = this.value.toUpperCase();
+            select = document.getElementById("chambre");
+            options = select.getElementsByTagName("option");
+            var found = false; // Variable pour suivre si au moins une option est trouvée
+            for (i = 0; i < options.length; i++) {
+                option = options[i];
+                if (option.textContent.toUpperCase().indexOf(input) > -1) {
+                    option.style.display = "";
+                    found = true; // Marquer comme trouvé si au moins une option est affichée
+                } else {
+                    option.style.display = "none";
+                }
+            }
+            // Afficher le texte "Aucun résultat trouvé" si aucune option n'est affichée
+            var noResultsMessage = document.getElementById("noResult");
+            if (!found) {
+                noResultsMessage.style.display = "block";
+            } else {
+                noResultsMessage.style.display = "none";
+            }
+        });
 setTimeout(function() {
-    document.getElementById('success-message').style.display = 'none';}, 5000);
+  document.getElementById('success-message').style.display = 'none';}, 5000);
